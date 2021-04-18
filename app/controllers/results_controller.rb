@@ -18,6 +18,7 @@ class ResultsController < ApplicationController
   end
 
   def edit
+    @result =Result.find(params[:id])
   end
 
   private
