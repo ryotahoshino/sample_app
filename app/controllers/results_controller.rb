@@ -28,9 +28,14 @@ class ResultsController < ApplicationController
     redirect_to result_path(@result)
   end
 
+  def destroy
+    result = Result.find(params[:id])
+    result.destroy
+    redirect_to user_path(result.user)
+  end
+
   private
   def result_params
     params.require(:result).permit(:title, :body, :image)
   end
-
 end
