@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   def index
     @users = User.all
   end
@@ -15,6 +16,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def destroy
+    result = Result.find(params[:id])
+    result.destroy
+    redirect_to user_path(result.user)
   end
 
   private
