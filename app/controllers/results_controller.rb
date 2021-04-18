@@ -21,6 +21,12 @@ class ResultsController < ApplicationController
     @result =Result.find(params[:id])
   end
 
+  def update
+    @result = Result.find(params[:id])
+    @result.update(result_params)
+    redirect_to result_path(@result)
+  end
+
   private
   def result_params
     params.require(:result).permit(:title, :body, :image)
