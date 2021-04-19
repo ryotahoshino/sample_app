@@ -21,6 +21,9 @@ class ResultsController < ApplicationController
 
   def edit
     @result =Result.find(params[:id])
+    if @result.user != current_user
+      redirect_to result_path, alert: '不正なアクセスです'
+    end
   end
 
   def update
