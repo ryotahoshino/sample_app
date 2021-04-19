@@ -15,18 +15,27 @@ class ResultsController < ApplicationController
   def create
     @result = Result.new(result_params)
     @result.user_id = current_user.id
-    @result.save
-    redirect_to result_path(@result)
+    if @result.save
+      redirect_to result_path(@result), notice: '投稿しました'
+    else
+      render :new
+    end
   end
 
   def edit
     @result =Result.find(params[:id])
+    if @result.user != current_user
+      redirect_to result_path, alert: '不正なアクセスです'
+    end
   end
 
   def update
     @result = Result.find(params[:id])
-    @result.update(result_params)
-    redirect_to result_path(@result)
+    if @result.update(result_params)
+      redirect_to result_path(@result), notice: '更新しました'
+    else
+      render :new
+    end
   end
 
   def destroy
