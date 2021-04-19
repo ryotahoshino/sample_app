@@ -16,7 +16,7 @@ class ResultsController < ApplicationController
     @result = Result.new(result_params)
     @result.user_id = current_user.id
     if @result.save
-      redirect_to result_path(@result)
+      redirect_to result_path(@result), notice: '投稿しました'
     else
       render :new
     end
@@ -32,7 +32,7 @@ class ResultsController < ApplicationController
   def update
     @result = Result.find(params[:id])
     if @result.update(result_params)
-      redirect_to result_path(@result)
+      redirect_to result_path(@result), notice: '更新しました'
     else
       render :new
     end
