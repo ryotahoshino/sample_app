@@ -8,11 +8,11 @@
   </div>
 </section>
 
-<% if @result.errors.any? %>
+<% if @user.errors.any? %>
   <div class="notification is-danger">
-    <h2><%= pluralize(@result.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
     <ul>
-      <% @result.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
       <li><%= message %></li>
       <% end %>
     </ul>
